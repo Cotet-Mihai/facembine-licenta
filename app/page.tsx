@@ -2,6 +2,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Search} from "lucide-react";
 import Image from 'next/image'
+import LogoCarousel from "@/app/components/LogoCarousel";
 
 export default function Home() {
   return (
@@ -28,8 +29,16 @@ export default function Home() {
                   <Image src={'/webp/home_image.webp'} width={300} height={300} alt={'Home Image'}/>
               </div>
           </div>
-          <div className={'h-[calc(100vh-3rem)] bg-green-500 flex justify-center'}>
-                <h4 className={'text-5xl font-semibold mt-6 uppercase text-green-900'}>Sponsori în care avem încredere!</h4>
+          <div className={'h-[calc(100vh-3rem)] bg-green-500 flex items-center flex-col'}>
+              <h4 className={'text-5xl font-semibold mt-6 uppercase text-green-900'}>Asociații în care avem încredere!</h4>
+              <p className={'mt-10 mb-20 mx-40 text-center text-green-100 font-semibold'}>
+                  Ne-am câștigat încrederea în aceste organizații observând modul în care își desfășoară activitățile și
+                  impactul pozitiv pe care îl au în comunitate. Activitățile lor sunt transparente și bine structurate,
+                  iar implicarea constantă în diverse proiecte inspiră respect și siguranță. Aceste aspecte ne fac să
+                  le recomandăm cu încredere, știind că acțiunile lor au rezultate reale și benefice
+                  pentru cei pe care îi susțin.
+              </p>
+              <LogoCarousel/>
           </div>
       </div>
 
