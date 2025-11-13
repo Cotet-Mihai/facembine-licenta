@@ -206,7 +206,7 @@ export default function CarouselCard({
               className={`shrink-0 flex flex-row ${
                 round
                   ? 'items-center justify-center text-center bg-[#060010] border-0'
-                  : 'items-center justify-center bg-green-800 rounded-[12px]'
+                  : 'items-center justify-center bg-green-600 rounded-[12px]'
               } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
