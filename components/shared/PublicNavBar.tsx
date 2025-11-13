@@ -1,12 +1,21 @@
 'use client'
 
 import {Input} from '@/components/ui/input'
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import {counties} from '@/lib/counties'
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {Menu} from "lucide-react";
 import {Drawer} from 'vaul';
+import {ButtonDonate} from "@/components/shared/ButtonDonate";
 
 export default function PublicNavBar() {
     return (
@@ -32,26 +41,41 @@ export default function PublicNavBar() {
                                     <div className={'flex justify-center flex-col gap-2'}>
                                         <Input placeholder={'Caută eveniment...'}/>
                                         <Select>
-                                            <SelectTrigger size={'sm'} className={'w-full'}>
-                                                <SelectValue placeholder={'Selectează Orașul...'}/>
+                                            <SelectTrigger size="sm" className="w-full">
+                                                <SelectValue placeholder="Selectează Orașul..." />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {counties.map((county) => (
-                                                    <SelectItem value={county.name}
-                                                                key={county.id}>{county.name}</SelectItem>
-                                                ))}
+                                                {/* Grupul București + sectoarele */}
+                                                <SelectGroup>
+                                                    <SelectLabel>București</SelectLabel>
+                                                    <SelectItem value="bucuresti" key="bucuresti">București</SelectItem>
+                                                    <SelectItem value="sector1" key="sector1">Sector 1</SelectItem>
+                                                    <SelectItem value="sector2" key="sector2">Sector 2</SelectItem>
+                                                    <SelectItem value="sector3" key="sector3">Sector 3</SelectItem>
+                                                    <SelectItem value="sector4" key="sector4">Sector 4</SelectItem>
+                                                    <SelectItem value="sector5" key="sector5">Sector 5</SelectItem>
+                                                    <SelectItem value="sector6" key="sector6">Sector 6</SelectItem>
+                                                </SelectGroup>
+
+                                                {/* Grupul restul județelor */}
+                                                <SelectGroup>
+                                                    <SelectLabel>Județe</SelectLabel>
+                                                    {counties.map((county) => (
+                                                        <SelectItem value={county.name} key={county.id}>
+                                                            {county.name}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectGroup>
                                             </SelectContent>
                                         </Select>
+
                                     </div>
                                     <div className={'flex justify-start items-start flex-col gap-2 m-4'}>
                                         <Button size={'sm'}>Crează cont</Button>
                                         <Button size={'sm'}>Autentificăte</Button>
 
-                                        <Button className={'font-bold text-red-600 m-6 hidden md:flex'}
-                                                variant={'outline'}>
-                                            <span>❤</span>
-                                            Donează
-                                        </Button>
+                                        {/*TODO: Revino cand ai implementat donatiile*/}
+                                        <ButtonDonate link={'#'} className={'mr-2'}/>
                                     </div>
                                 </Drawer.Description>
                             </div>
@@ -61,32 +85,50 @@ export default function PublicNavBar() {
             </Drawer.Root>
 
             <Link href="/" className="m-4">
-                <h1 className={`text-xl font-extrabold text-green-900`}>FacemBine✨</h1>
+                <h1 className={`text-xl font-extrabold text-green-800`}>FacemBine✨</h1>
             </Link>
 
-            <div className={'hidden mr-auto  md:flex md:justify-center md:items-center'}>
-                <Input className={'w-60 h-8'} placeholder={'Caută Eveniment...'}/>
-
+            <div className={'hidden mr-auto  md:flex md:justify-center md:items-center gap-4'}>
                 <Select>
-                    <SelectTrigger size={'sm'} className={'w-50 ml-2'}>
-                        <SelectValue placeholder={'Selectează Orașul...'}/>
+                    <SelectTrigger size="sm" className="w-50">
+                        <SelectValue placeholder="Selectează Orașul..." />
                     </SelectTrigger>
                     <SelectContent>
-                        {counties.map((county) => (
-                            <SelectItem value={county.name} key={county.id}>{county.name}</SelectItem>
-                        ))}
+                        {/* Grupul București + sectoarele */}
+                        <SelectGroup>
+                            <SelectLabel>București</SelectLabel>
+                            <SelectItem value="bucuresti" key="bucuresti">București</SelectItem>
+                            <SelectItem value="sector1" key="sector1">Sector 1</SelectItem>
+                            <SelectItem value="sector2" key="sector2">Sector 2</SelectItem>
+                            <SelectItem value="sector3" key="sector3">Sector 3</SelectItem>
+                            <SelectItem value="sector4" key="sector4">Sector 4</SelectItem>
+                            <SelectItem value="sector5" key="sector5">Sector 5</SelectItem>
+                            <SelectItem value="sector6" key="sector6">Sector 6</SelectItem>
+                        </SelectGroup>
+
+                        {/* Grupul restul județelor */}
+                        <SelectGroup>
+                            <SelectLabel>Județe</SelectLabel>
+                            {counties.map((county) => (
+                                county.name !== 'București' && (
+                                    <SelectItem value={county.name} key={county.id}>
+                                        {county.name}
+                                    </SelectItem>
+                                )
+                            ))}
+                        </SelectGroup>
                     </SelectContent>
                 </Select>
+
+                <Input className={'w-auto h-8'} placeholder={'Caută Eveniment...'}/>
             </div>
 
             <div className={'hidden md:flex md:justify-center md:items-center gap-2'}>
                 <Button size={'sm'}>Crează cont</Button>
-                <Button size={'sm'}>Autentificăte</Button>
+                <Button size={'sm'} className={'mr-6'}>Autentificăte</Button>
 
-                <Button className={'font-bold text-red-600 m-6 hidden md:flex'} variant={'outline'}>
-                    <span>❤</span>
-                    Donează
-                </Button>
+                {/*TODO: Revino cand ai implementat donatiile*/}
+                <ButtonDonate link={'#'} className={'mr-2'}/>
             </div>
         </nav>
     )
