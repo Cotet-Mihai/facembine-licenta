@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FacemBine
 
-## Getting Started
+**FacemBine** is a modern web application designed to connect volunteers, NGOs, and public institutions in a single, centralized platform. The project aims to modernize the way people discover community events, sign up for activities, sign petitions, and support social causes through donations.
 
-First, run the development server:
+The platform solves the problem of fragmented volunteering information by providing a complete ecosystem for managing participants, organizing events, and monitoring community impact.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔎 For Volunteers
+- Browse social, charitable, and civic events
+- Filter by date, location, event type, or organizer
+- One-click registration
+- Real-time notifications and updates
+- Personal participation history and progress tracking
+- Rating system for organizers and post-event feedback
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🧭 For Organizers (NGOs, city halls, influencers, political parties)
+- Create and manage events
+- Manage volunteers (approval, rejection, communication)
+- Send mass notifications to participants
+- Collect online donations with full traceability
+- View statistics and reports on event impact
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 💬 Civic Engagement
+- Create and sign petitions
+- Promote social campaigns
+- Track public support for causes
 
-## Learn More
+### 💸 Donations
+- Secure online donation system
+- Full transparency and traceability
+- Special section: **"Donation of the Week"**
 
-To learn more about Next.js, take a look at the following resources:
+### 🏆 Gamification
+- Badges and points for participation
+- Levels and rewards for active volunteers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Frontend & Backend
+- **Next.js** (Full-stack: SSR + CSR)
+- **NextAuth** (or custom authentication)
+- **API Routes** for backend logic
 
-## Deploy on Vercel
+### Database
+- **PostgreSQL** (via Supabase)
+- **Prisma ORM** for schema modeling and interaction
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Additional Functionality
+- Webhooks & real-time notifications
+- Fully responsive interface (mobile + desktop)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📘 Project Mission
+
+The purpose of **FacemBine** is to build a complete volunteering hub where:
+- Volunteers can easily find events
+- Organizers have modern management tools
+- Communities can support social causes through actions and donations
+- Civic engagement becomes accessible to everyone
+
+**FacemBine** promotes transparency, collaboration, and social responsibility in a modern, digital environment.
