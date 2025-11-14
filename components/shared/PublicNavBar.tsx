@@ -19,7 +19,7 @@ import {ButtonDonate} from "@/components/shared/ButtonDonate";
 
 export default function PublicNavBar() {
     return (
-        <nav className={'flex justify-start items-center h-12 border border-gray-200 sticky top-0 z-50 bg-white'}>
+        <nav className={'fixed top-0 left-0 w-full flex justify-start items-center h-12 border border-gray-200 bg-white z-50'}>
             <Drawer.Root direction="left">
                 <Drawer.Trigger
                     className="flex relative h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden px-4
@@ -42,7 +42,7 @@ export default function PublicNavBar() {
                                         <Input placeholder={'Caută eveniment...'}/>
                                         <Select>
                                             <SelectTrigger size="sm" className="w-full">
-                                                <SelectValue placeholder="Selectează Orașul..." />
+                                                <SelectValue placeholder="Selectează Orașul..."/>
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {/* Grupul București + sectoarele */}
@@ -91,7 +91,7 @@ export default function PublicNavBar() {
             <div className={'hidden mr-auto  md:flex md:justify-center md:items-center gap-4'}>
                 <Select>
                     <SelectTrigger size="sm" className="w-50">
-                        <SelectValue placeholder="Selectează Orașul..." />
+                        <SelectValue placeholder="Selectează Orașul..."/>
                     </SelectTrigger>
                     <SelectContent>
                         {/* Grupul București + sectoarele */}

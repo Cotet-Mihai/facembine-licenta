@@ -10,7 +10,7 @@ import SpotlightCard from "@/app/components/SpotlightCard";
 export default function Home() {
   return (
       <div>
-          <div className={'h-[calc(100vh-3rem)] flex justify-center items-center flex-col sm:flex-row'}>
+          <div className={'h-screen flex justify-center items-center flex-col sm:flex-row'}>
               <div>
                   <div className={'w-full max-w-4xl px-4 flex flex-col justify-center items-center sm:items-start'}>
                       <h3 className={'text-3xl text-green-600 sm:text-4xl'}>Găsește evenimente,</h3>
@@ -32,8 +32,8 @@ export default function Home() {
                   <Image src={'/webp/home_image.webp'} width={300} height={300} alt={'Home Image'}/>
               </div>
           </div>
-          <div className={'md:h-[calc(100vh-3rem)] bg-white flex flex-col'}>
-            <div className={'flex flex-col md:flex-row justify-center items-center bg-green-500 md:gap-0 shadow-2xl shadow-green-950'}>
+          <div className={'md:h-screen bg-white flex flex-col pt-12'}>
+            <div className={'flex flex-col md:flex-row justify-center items-center bg-green-500 md:gap-0 md:shadow-2xl shadow-green-950'}>
                 <h4 className={`${bebas_neue.className} text-5xl font-semibold uppercase text-green-900 m-5 md:m-10`}>
                     <span className={'text-7xl text-yellow-50'}>
                         Asociații
@@ -63,12 +63,12 @@ export default function Home() {
                     />
                 </div>
             </div>
-              <div className={'flex justify-center items-end flex-col mb-auto mt-auto p-5 md:p-15'}>
-                  <h5 className={`${bebas_neue.className} text-5xl text-green-900 mb-2.5`}>
+              <div className={'flex justify-center items-end flex-col mb-auto mt-auto p-5 md:px-15'}>
+                  <h5 className={`${bebas_neue.className} text-2xl md:text-5xl text-green-900 mb-2.5`}>
                       De ce avem încredere în acestea ?
                   </h5>
-                  <div className={'flex justify-center gap-10'}>
-                      <SpotlightCard>
+                  <div className={'flex justify-center gap-0 md:gap-10 flex-col md:flex-row'}>
+                      <SpotlightCard className={'mb-4 md:mb-0'}>
                           <p className={'text-green-900 font-semibold'}>
                               Ne-am câștigat încrederea în aceste organizații observând modul în care își desfășoară
                               activitățile și impactul pozitiv pe care îl au în comunitate.
@@ -85,9 +85,7 @@ export default function Home() {
                       </SpotlightCard>
                   </div>
               </div>
-              <div className={'bg-green-500 pt-4'} style={{
-                  boxShadow: '10px -6px 50px rgba(3,44,20,1)'
-              }}>
+              <div className="bg-green-500 pt-4 md:shadow-2xl shadow-green-950">
                   <CarouselLogo
                       speed={40}
                       direction="left"
