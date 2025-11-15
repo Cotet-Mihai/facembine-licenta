@@ -85,7 +85,7 @@ export default function PublicNavBar() {
             </Drawer.Root>
 
             <Link href="/" className="m-4">
-                <h1 className={`text-xl font-extrabold text-green-800`}>FacemBine✨</h1>
+                <h1 className={`text-xl font-extrabold text-green-800`}>CIVICOM✨</h1>
             </Link>
 
             <div className={'hidden mr-auto  md:flex md:justify-center md:items-center gap-4'}>

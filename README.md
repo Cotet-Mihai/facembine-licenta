@@ -1,6 +1,6 @@
-# FacemBine
+# CiviCom
 
-**FacemBine** is a modern web application designed to connect volunteers, NGOs, and public institutions in a single, centralized platform. The project aims to modernize the way people discover community events, sign up for activities, sign petitions, and support social causes through donations.
+**CiviCom** is a modern web application designed to connect volunteers, NGOs, and public institutions in a single, centralized platform. The project aims to modernize the way people discover community events, sign up for activities, sign petitions, and support social causes through donations.
 
 The platform solves the problem of fragmented volunteering information by providing a complete ecosystem for managing participants, organizing events, and monitoring community impact.
 
@@ -52,10 +52,10 @@ The platform solves the problem of fragmented volunteering information by provid
 
 ## 📘 Project Mission
 
-The purpose of **FacemBine** is to build a complete volunteering hub where:
+The purpose of **CiviCom** is to build a complete volunteering hub where:
 - Volunteers can easily find events
 - Organizers have modern management tools
 - Communities can support social causes through actions and donations
 - Civic engagement becomes accessible to everyone
 
-**FacemBine** promotes transparency, collaboration, and social responsibility in a modern, digital environment.
+**CiviCom** promotes transparency, collaboration, and social responsibility in a modern, digital environment.
