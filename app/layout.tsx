@@ -4,6 +4,7 @@ import PublicNavBar from "@/components/shared/PublicNavBar";
 import {montserrat} from "@/lib/fonts";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import {Toaster} from "sonner";
 
 export const metadata: Metadata = {
   title: "CIVICOM",
@@ -23,6 +24,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights/>
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

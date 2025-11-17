@@ -1,6 +1,6 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {Search, BadgeInfoIcon} from "lucide-react";
+import {Search} from "lucide-react";
 import Image from 'next/image'
 import {bebas_neue} from "@/lib/fonts";
 import CarouselLogo from "@/app/components/CarouselLogo";
@@ -42,9 +42,9 @@ export default function Home() {
                         încredere!
                     </span>
                 </h4>
-                <div className={'md:hidden mb-4'}>
+                <div className={'md:hidden block mb-4'}>
                     <CarouselCard
-                        baseWidth={400}
+                        baseWidth={350}
                         autoplay={true}
                         autoplayDelay={5000}
                         pauseOnHover={true}
@@ -52,7 +52,7 @@ export default function Home() {
                         round={false}
                     />
                 </div>
-                <div className={'hidden md:block'}>
+                <div className={'hidden md:block '}>
                     <CarouselCard
                         baseWidth={500}
                         autoplay={true}

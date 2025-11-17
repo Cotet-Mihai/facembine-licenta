@@ -1,36 +1,76 @@
+'use client'
+
 import {cn} from "@/lib/utils"
 import {Button} from "@/components/ui/button"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card"
 import {Field, FieldDescription, FieldGroup, FieldLabel,} from "@/components/ui/field"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import {Input} from "@/components/ui/input"
-import React from "react";
+import React, {useState} from "react";
+import {toast} from "sonner";
 
 export default function SignupForm({
                                        className,
                                        ...props
                                    }: React.ComponentProps<"div">) {
+    const supabase = createClientComponentClient();
+    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (password !== confirmPassword ) {
+            toast.error('Parolele nu coincid!')
+            return;
+        }
+
+        if (password.length < 8) {
+            toast.error("Parola trebuie să aibă cel puțin 8 caractere.")
+            return;
+        }
+
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: "https://civicom.ro/auth/confirm?next=/dashboard"
+            }
+        })
+
+        if (error) {
+            toast.error(error.message)
+        } else {
+            toast.success("Email-ul de verificare a fost trimis!")
+            setLastName("")
+            setFirstName("")
+            setEmail("")
+            setPassword("")
+            setConfirmPassword("")
+        }
+    };
+
     return (
         <div className={cn("flex flex-col gap-6 max-w-xl", className)} {...props}>
             <Card>
-                <CardHeader className="text-center">
-                    <CardTitle className="text-xl">Creează-ți contul</CardTitle>
-                    <CardDescription>
-                        Introdu adresa ta de e-mail mai jos pentru a-ți crea contul
-                    </CardDescription>
-                </CardHeader>
                 <CardContent>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <FieldGroup>
                             <Field className="grid grid-cols-2 gap-4">
                                 <Field>
                                     <FieldLabel htmlFor="last-name">Nume</FieldLabel>
-                                    <Input id="last-name" type="text" placeholder={'Popescu'} required/>
+                                    <Input id="last-name" type="text" placeholder={'Popescu'} value={lastName}
+                                           onChange={(e) => setLastName(e.target.value)} required/>
                                 </Field>
                                 <Field>
                                     <FieldLabel htmlFor="first-name">
                                         Prenume
                                     </FieldLabel>
-                                    <Input id="first-name" type="text" placeholder={'Ion'} required/>
+                                    <Input id="first-name" type="text" placeholder={'Ion'} value={firstName}
+                                           onChange={(e) => setFirstName(e.target.value)} required/>
                                 </Field>
                             </Field>
                             <Field>
@@ -38,7 +78,8 @@ export default function SignupForm({
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder="m@example.com"
+                                    placeholder="m@example.com" value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     required
                                 />
                             </Field>
@@ -46,13 +87,15 @@ export default function SignupForm({
                                 <Field className="grid grid-cols-2 gap-4">
                                     <Field>
                                         <FieldLabel htmlFor="password">Parola</FieldLabel>
-                                        <Input id="password" type="password" required/>
+                                        <Input id="password" type="password" value={password}
+                                               onChange={(e) => setPassword(e.target.value)} required/>
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor="confirm-password">
                                             Confirmă Parola
                                         </FieldLabel>
-                                        <Input id="confirm-password" type="password" required/>
+                                        <Input id="confirm-password" type="password" value={confirmPassword}
+                                               onChange={(e) => setConfirmPassword(e.target.value)} required/>
                                     </Field>
                                 </Field>
                                 <FieldDescription>
