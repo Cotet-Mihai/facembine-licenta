@@ -2,6 +2,6 @@
 
 export default function Dashboard() {
     return(
-        <h1>BRAVO COAIE</h1>
+        <h1 className={'p-15'}>BRAVO COAIE</h1>
     )
 }
