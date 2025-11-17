@@ -37,7 +37,7 @@ export default function SignupForm({
             email,
             password,
             options: {
-                emailRedirectTo: "https://civicom.ro/auth/confirm?next=/dashboard"
+                emailRedirectTo: "https://localhost.ro/auth/confirm?next=/dashboard"
             }
         })
 
