@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import PublicNavBar from "@/components/shared/PublicNavBar";
 import {montserrat} from "@/lib/fonts";
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "CIVICOM",
@@ -19,6 +21,8 @@ export default function RootLayout({
       <body className={montserrat.className}>
       <PublicNavBar/>
         {children}
+        <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );

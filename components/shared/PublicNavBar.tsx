@@ -71,7 +71,11 @@ export default function PublicNavBar() {
 
                                     </div>
                                     <div className={'flex justify-start items-start flex-col gap-2 m-4'}>
-                                        <Button size={'sm'}>Crează cont</Button>
+                                        <Button size={'sm'} asChild>
+                                            <Link href={'/auth/sign-up'}>
+                                                Creează cont
+                                            </Link>
+                                        </Button>
                                         <Button size={'sm'}>Autentificăte</Button>
 
                                         {/*TODO: Revino cand ai implementat donatiile*/}
@@ -124,7 +128,11 @@ export default function PublicNavBar() {
             </div>
 
             <div className={'hidden md:flex md:justify-center md:items-center gap-2'}>
-                <Button size={'sm'}>Crează cont</Button>
+                <Button size={'sm'} asChild>
+                    <Link href={'/auth/sign-up'}>
+                        Creează cont
+                    </Link>
+                </Button>
                 <Button size={'sm'} className={'mr-6'}>Autentificăte</Button>
 
                 {/*TODO: Revino cand ai implementat donatiile*/}
