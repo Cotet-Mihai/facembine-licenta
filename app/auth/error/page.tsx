@@ -2,6 +2,6 @@
 
 export default function Error() {
     return (
-        <p>Ceva a mers prost</p>
+        <p className={'p-15'}>Ceva a mers prost</p>
     )
 }
