@@ -1,31 +1,40 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "./globals.css";
-import PublicNavBar from "@/components/shared/PublicNavBar";
 import {montserrat} from "@/lib/fonts";
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import {Analytics} from '@vercel/analytics/next';
+import {SpeedInsights} from "@vercel/speed-insights/next"
 import {Toaster} from "sonner";
+import React from "react";
+import {createClient} from "@/lib/supabase/client";
+import PublicNavBar from "@/components/shared/PublicNavBar";
+import {PublicNavBar as PrivateNavBar} from "@/components/shared/PrivateNavBar"
 
 export const metadata: Metadata = {
-  title: "CIVICOM",
-  description: "Un spațiu creat de comunitate, pentru comunitate. Descoperă și centralizăm inițiative locale de " +
-      "activism, voluntariat și implicare civică, pentru a sprijini comunitatea și a face o diferență reală.",
+    title: "CIVICOM",
+    description: "Un spațiu creat de comunitate, pentru comunitate. Descoperă și centralizăm inițiative locale de " +
+        "activism, voluntariat și implicare civică, pentru a sprijini comunitatea și a face o diferență reală.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+export default async function RootLayout({
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={montserrat.className}>
-      <PublicNavBar/>
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getClaims();
+    const user = data?.claims;
+
+    return (
+        <html lang="en">
+        <body className={montserrat.className}>
+        {
+          user ? <PrivateNavBar/> : <PublicNavBar/>
+        }
         {children}
-        <Analytics />
+        <Analytics/>
         <SpeedInsights/>
-        <Toaster position="top-center" richColors />
-      </body>
-    </html>
-  );
+        <Toaster position="top-center" richColors/>
+        </body>
+        </html>
+    );
 }

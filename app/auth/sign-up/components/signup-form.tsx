@@ -7,7 +7,7 @@ import {Field, FieldDescription, FieldGroup, FieldLabel,} from "@/components/ui/
 import {Input} from "@/components/ui/input"
 import {toast} from "sonner";
 import React from "react";
-import {signupAction} from "@/app/auth/sign-up/actions";
+import {signupAction} from "@/lib/supabase/actions/signUp";
 
 export default function SignupForm({
                                        className,
