@@ -2,56 +2,29 @@
 
 import {cn} from "@/lib/utils"
 import {Button} from "@/components/ui/button"
-import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card"
+import {Card, CardContent} from "@/components/ui/card"
 import {Field, FieldDescription, FieldGroup, FieldLabel,} from "@/components/ui/field"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import {Input} from "@/components/ui/input"
-import React, {useState} from "react";
 import {toast} from "sonner";
+import React from "react";
+import {signupAction} from "@/app/auth/sign-up/actions";
 
 export default function SignupForm({
                                        className,
                                        ...props
                                    }: React.ComponentProps<"div">) {
-    const supabase = createClientComponentClient();
-    const [lastName, setLastName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        if (password !== confirmPassword ) {
-            toast.error('Parolele nu coincid!')
-            return;
-        }
+        const formData = new FormData(e.currentTarget);
+        const result = await signupAction(formData);
 
-        if (password.length < 8) {
-            toast.error("Parola trebuie să aibă cel puțin 8 caractere.")
-            return;
-        }
-
-        const { data, error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                emailRedirectTo: "https://civicom.ro/auth/confirm?next=/dashboard"
-            }
-        })
-
-        if (error) {
-            toast.error(error.message)
+        if (result?.error) {
+            toast.error(result.error)
         } else {
-            toast.success("Email-ul de verificare a fost trimis!")
-            setLastName("")
-            setFirstName("")
-            setEmail("")
-            setPassword("")
-            setConfirmPassword("")
+            toast.success("Verifică emailul pentru confirmare!");
         }
-    };
+    }
 
     return (
         <div className={cn("flex flex-col gap-6 max-w-xl", className)} {...props}>
@@ -61,25 +34,22 @@ export default function SignupForm({
                         <FieldGroup>
                             <Field className="grid grid-cols-2 gap-4">
                                 <Field>
-                                    <FieldLabel htmlFor="last-name">Nume</FieldLabel>
-                                    <Input id="last-name" type="text" placeholder={'Popescu'} value={lastName}
-                                           onChange={(e) => setLastName(e.target.value)} required/>
+                                    <FieldLabel htmlFor="lastName">Nume</FieldLabel>
+                                    <Input name="lastName" type="text" placeholder={'Popescu'} required/>
                                 </Field>
                                 <Field>
-                                    <FieldLabel htmlFor="first-name">
+                                    <FieldLabel htmlFor="firstName">
                                         Prenume
                                     </FieldLabel>
-                                    <Input id="first-name" type="text" placeholder={'Ion'} value={firstName}
-                                           onChange={(e) => setFirstName(e.target.value)} required/>
+                                    <Input name="firstName" type="text" placeholder={'Ion'} required/>
                                 </Field>
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="email">Email</FieldLabel>
                                 <Input
-                                    id="email"
+                                    name="email"
                                     type="email"
-                                    placeholder="m@example.com" value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="m@example.com"
                                     required
                                 />
                             </Field>
@@ -87,15 +57,13 @@ export default function SignupForm({
                                 <Field className="grid grid-cols-2 gap-4">
                                     <Field>
                                         <FieldLabel htmlFor="password">Parola</FieldLabel>
-                                        <Input id="password" type="password" value={password}
-                                               onChange={(e) => setPassword(e.target.value)} required/>
+                                        <Input name="password" type="password" required/>
                                     </Field>
                                     <Field>
-                                        <FieldLabel htmlFor="confirm-password">
+                                        <FieldLabel htmlFor="confirmPassword">
                                             Confirmă Parola
                                         </FieldLabel>
-                                        <Input id="confirm-password" type="password" value={confirmPassword}
-                                               onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                                        <Input name="confirmPassword" type="password" required/>
                                     </Field>
                                 </Field>
                                 <FieldDescription>

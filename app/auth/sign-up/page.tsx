@@ -2,6 +2,7 @@ import SignupForm from "@/app/auth/sign-up/components/signup-form";
 import RotatingText from "@/app/auth/sign-up/components/RotatingText";
 
 export default function SignIn() {
+
     return (
         <div className="w-full h-screen flex justify-center items-center flex-col gap-12 p-15 bg-green-50">
             <div className={'flex justify-center items-center font-bold text-3xl flex-col gap-3 max-w-xl grow-0 shrink-0'}>
