@@ -13,10 +13,18 @@ import {
 import {counties} from '@/lib/counties'
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import {Menu, UserRound} from "lucide-react";
+import {Menu, UserRoundIcon} from "lucide-react";
 import {Drawer} from 'vaul';
 import {ButtonDonate} from "@/components/shared/ButtonDonate";
 import {usePathname} from "next/navigation";
+import {
+    DropdownMenu,
+    DropdownMenuContent, DropdownMenuItem,
+    DropdownMenuLabel, DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import {signOutAction} from "@/lib/supabase/actions/signOut";
+import {FlipButton, FlipButtonBack, FlipButtonFront} from "@/components/animate-ui/components/buttons/flip";
 
 export default function PrivateNavBar() {
     const pathname = usePathname();
@@ -136,14 +144,30 @@ export default function PrivateNavBar() {
 
                     {/* RIGHT SIDE: Buttons */}
                     <div className="flex items-center gap-2">
-                        <Button size="sm" asChild>
-                            <Link href="/auth/sign-in">
-                                <UserRound/>
-                                Contul meu
-                            </Link>
-                        </Button>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger className={'border p-1 rounded-md hover:bg-muted'}>
+                                <UserRoundIcon/>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>Profile</DropdownMenuItem>
+                                <DropdownMenuItem>Billing</DropdownMenuItem>
+                                <DropdownMenuItem>Team</DropdownMenuItem>
+                                <DropdownMenuItem>Subscription</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Button onClick={signOutAction} className={'m-0'}>
+                                        Deconecteză-te
+                                    </Button>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
 
-                        <ButtonDonate link="#" className="mr-2"/>
+                        <FlipButton>
+                            <FlipButtonFront variant={'accent'} size={'sm'}>Donează ❤</FlipButtonFront>
+                            <FlipButtonBack variant={'destructive'} size={'sm'}>Donează ❤</FlipButtonBack>
+                        </FlipButton>
                     </div>
                 </div>
             </div>

@@ -4,12 +4,12 @@ import {cn} from "@/lib/utils"
 import {Button} from "@/components/ui/button"
 import {Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator,} from "@/components/ui/field"
 import {Input} from "@/components/ui/input"
-import React from "react";
-import {signupAction} from "@/lib/supabase/actions/signUp";
-import {toast} from "sonner";
 import Link from "next/link";
+import React from "react";
+import {toast} from "sonner";
+import {signInWithEmailAction} from "@/lib/supabase/actions/signIn";
 
-export function SignupForm({
+export function SigninForm({
                                className,
                                ...props
                            }: React.ComponentProps<"form">) {
@@ -17,7 +17,7 @@ export function SignupForm({
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const result = await signupAction(formData);
+        const result = await signInWithEmailAction(formData);
 
         if (result?.error) {
             toast.error(result.error)
@@ -30,40 +30,31 @@ export function SignupForm({
         <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleSubmit}>
             <FieldGroup>
                 <div className="flex flex-col items-center gap-1 text-center">
-                    <h1 className="text-2xl font-bold">Creează-ți contul</h1>
+                    <h1 className="text-2xl font-bold">Autentifică-te</h1>
                     <p className="text-muted-foreground text-sm text-balance">
                         Să facem o lume mai bună pentru toți!
                     </p>
                 </div>
                 <Field>
-                    <FieldLabel htmlFor="name">Nume complet</FieldLabel>
-                    <Input name="name" type="text" placeholder="Popescu Ion" required/>
-                </Field>
-                <Field>
                     <FieldLabel htmlFor="email">Email</FieldLabel>
                     <Input name="email" type="email" placeholder="m@example.com" required/>
-                    <FieldDescription>
-                        Vom folosi acest email pentru a te contacta. Nu îl vom distribui nimănui.
-                    </FieldDescription>
                 </Field>
                 <Field>
-                    <FieldLabel htmlFor="password">Parolă</FieldLabel>
+                    <div className="flex items-center">
+                        <FieldLabel htmlFor="password">Parolă</FieldLabel>
+                        <a
+                            href="#"
+                            className="ml-auto text-sm underline-offset-4 hover:underline"
+                        >
+                            Ați uitat parola?
+                        </a>
+                    </div>
                     <Input name="password" type="password" required/>
-                    <FieldDescription>
-                        Trebuie să aibă cel puțin 8 caractere.
-                    </FieldDescription>
                 </Field>
                 <Field>
-                    <FieldLabel htmlFor="confirm-password">Confirmă parola</FieldLabel>
-                    <Input name="confirm-password" type="password" required/>
-                    <FieldDescription>
-                        Te rugăm să confirmi parola.
-                    </FieldDescription>
+                    <Button type="submit">Conectează-te</Button>
                 </Field>
-                <Field>
-                    <Button type="submit">Creează cont</Button>
-                </Field>
-                <FieldSeparator>Sau continuă cu</FieldSeparator>
+                <FieldSeparator>Sau continuați cu</FieldSeparator>
                 <Field>
                     <Button variant="outline" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -72,10 +63,13 @@ export function SignupForm({
                                 fill="currentColor"
                             />
                         </svg>
-                        Înscrie-te cu GitHub
+                        Autentificare cu GitHub
                     </Button>
-                    <FieldDescription className="px-6 text-center">
-                        Ai deja un cont? <Link href="/auth/sign-in">Autentifică-te</Link>
+                    <FieldDescription className="text-center">
+                        Nu aveți un cont?{" "}
+                        <Link href="/auth/sign-up" className="underline underline-offset-4">
+                            Înscrie-te
+                        </Link>
                     </FieldDescription>
                 </Field>
             </FieldGroup>

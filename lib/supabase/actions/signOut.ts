@@ -3,7 +3,7 @@
 import {createClient} from "@/lib/supabase/client";
 import {redirect} from "next/navigation";
 
-export async function signOut() {
+export async function signOutAction() {
     const supabase = await createClient();
 
     const { error } = await supabase.auth.signOut()
@@ -12,5 +12,5 @@ export async function signOut() {
         return {error: error.message}
     }
 
-    redirect("/auth/sign-in");
+    redirect("/");
 }
