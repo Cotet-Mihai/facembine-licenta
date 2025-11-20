@@ -25,8 +25,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {signOut} from "@/lib/supabase/actions/signOut";
+import {usePathname} from "next/navigation";
 
 export function PublicNavBar() {
+
+    const pathname = usePathname();
+    const showNavbar = !pathname.startsWith("/auth");
+
+    if (!showNavbar) return null;
+
     return (
         <nav
             className={'fixed top-0 left-0 w-full flex justify-start items-center h-12 border border-gray-200 bg-white z-50'}>

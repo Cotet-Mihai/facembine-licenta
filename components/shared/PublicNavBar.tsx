@@ -16,8 +16,14 @@ import {Button} from "@/components/ui/button";
 import {Menu} from "lucide-react";
 import {Drawer} from 'vaul';
 import {ButtonDonate} from "@/components/shared/ButtonDonate";
+import {usePathname} from "next/navigation";
 
 export default function PublicNavBar() {
+    const pathname = usePathname();
+    const showNavbar = !pathname.startsWith("/auth");
+
+    if (!showNavbar) return null;
+
     return (
         <nav className={'fixed top-0 left-0 w-full flex justify-start items-center h-12 border border-gray-200 bg-white z-50'}>
             <Drawer.Root direction="left">
@@ -133,7 +139,11 @@ export default function PublicNavBar() {
                         Creează cont
                     </Link>
                 </Button>
-                <Button size={'sm'} className={'mr-6'}>Autentificăte</Button>
+                <Button size={'sm'} className={'mr-6'}>
+                    <Link href={'/auth/sign-in'}>
+                        Autentificăte
+                    </Link>
+                </Button>
 
                 {/*TODO: Revino cand ai implementat donatiile*/}
                 <ButtonDonate link={'#'} className={'mr-2'}/>

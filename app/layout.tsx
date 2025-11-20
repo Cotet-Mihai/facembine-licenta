@@ -7,7 +7,7 @@ import {Toaster} from "sonner";
 import React from "react";
 import {createClient} from "@/lib/supabase/client";
 import PublicNavBar from "@/components/shared/PublicNavBar";
-import {PublicNavBar as PrivateNavBar} from "@/components/shared/PrivateNavBar"
+import {PublicNavBar as PrivateNavBar} from "@/components/shared/PrivateNavBar";
 
 export const metadata: Metadata = {
     title: "CIVICOM",
@@ -20,12 +20,13 @@ export default async function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
+    // Verifica daca utilizatorul este inregistrat
     const supabase = await createClient();
     const { data } = await supabase.auth.getClaims();
     const user = data?.claims;
 
     return (
-        <html lang="en">
+        <html lang="ro">
         <body className={montserrat.className}>
         {
           user ? <PrivateNavBar/> : <PublicNavBar/>
