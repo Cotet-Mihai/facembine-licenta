@@ -17,6 +17,7 @@ import {Menu} from "lucide-react";
 import {Drawer} from 'vaul';
 import {ButtonDonate} from "@/components/shared/ButtonDonate";
 import {usePathname} from "next/navigation";
+import {FlipButton, FlipButtonBack, FlipButtonFront} from "@/components/animate-ui/components/buttons/flip";
 
 export default function PublicNavBar() {
     const pathname = usePathname();
@@ -56,25 +57,12 @@ export default function PublicNavBar() {
                                                 <SelectValue placeholder="Selectează Orașul..."/>
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectGroup>
-                                                    <SelectLabel>București</SelectLabel>
-                                                    <SelectItem value="bucuresti">București</SelectItem>
-                                                    <SelectItem value="sector1">Sector 1</SelectItem>
-                                                    <SelectItem value="sector2">Sector 2</SelectItem>
-                                                    <SelectItem value="sector3">Sector 3</SelectItem>
-                                                    <SelectItem value="sector4">Sector 4</SelectItem>
-                                                    <SelectItem value="sector5">Sector 5</SelectItem>
-                                                    <SelectItem value="sector6">Sector 6</SelectItem>
-                                                </SelectGroup>
-
-                                                <SelectGroup>
-                                                    <SelectLabel>Județe</SelectLabel>
-                                                    {counties.map((county) => (
-                                                        <SelectItem value={county.name} key={county.id}>
-                                                            {county.name}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectGroup>
+                                                <SelectLabel>Județe</SelectLabel>
+                                                {counties.map((county) => (
+                                                    <SelectItem value={county.name} key={county.id}>
+                                                        {county.name}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
 
@@ -112,25 +100,11 @@ export default function PublicNavBar() {
                                 <SelectValue placeholder="Selectează Orașul..."/>
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>București</SelectLabel>
-                                    <SelectItem value="bucuresti">București</SelectItem>
-                                    <SelectItem value="sector1">Sector 1</SelectItem>
-                                    <SelectItem value="sector2">Sector 2</SelectItem>
-                                    <SelectItem value="sector3">Sector 3</SelectItem>
-                                    <SelectItem value="sector4">Sector 4</SelectItem>
-                                    <SelectItem value="sector5">Sector 5</SelectItem>
-                                    <SelectItem value="sector6">Sector 6</SelectItem>
-                                </SelectGroup>
-
-                                <SelectGroup>
-                                    <SelectLabel>Județe</SelectLabel>
-                                    {counties.map((county) => (
-                                        <SelectItem value={county.name} key={county.id}>
-                                            {county.name}
-                                        </SelectItem>
-                                    ))}
-                                </SelectGroup>
+                                {counties.map((county) => (
+                                    <SelectItem value={county.name} key={county.id}>
+                                        {county.name}
+                                    </SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
 
@@ -150,7 +124,10 @@ export default function PublicNavBar() {
                             <Link href="/auth/sign-in">Autentificăte</Link>
                         </Button>
 
-                        <ButtonDonate link="#" className="mr-2"/>
+                        <FlipButton>
+                            <FlipButtonFront variant={'accent'} size={'sm'}>Donează ❤</FlipButtonFront>
+                            <FlipButtonBack variant={'destructive'} size={'sm'}>Donează ❤</FlipButtonBack>
+                        </FlipButton>
                     </div>
                 </div>
             </div>

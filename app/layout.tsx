@@ -7,7 +7,7 @@ import {Toaster} from "sonner";
 import React from "react";
 import {createClient} from "@/lib/supabase/client";
 import PublicNavBar from "@/components/shared/PublicNavBar";
-import {PublicNavBar as PrivateNavBar} from "@/components/shared/PrivateNavBar";
+import PrivateNavBar from "@/components/shared/PrivateNavBar";
 
 export const metadata: Metadata = {
     title: "CIVICOM",
