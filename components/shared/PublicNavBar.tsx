@@ -57,12 +57,14 @@ export default function PublicNavBar() {
                                                 <SelectValue placeholder="Selectează Orașul..."/>
                                             </SelectTrigger>
                                             <SelectContent>
+                                                <SelectGroup>
+                                                    {counties.map((county) => (
+                                                        <SelectItem value={county.name} key={county.id}>
+                                                            {county.name}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectGroup>
                                                 <SelectLabel>Județe</SelectLabel>
-                                                {counties.map((county) => (
-                                                    <SelectItem value={county.name} key={county.id}>
-                                                        {county.name}
-                                                    </SelectItem>
-                                                ))}
                                             </SelectContent>
                                         </Select>
 
