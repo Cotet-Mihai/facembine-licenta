@@ -58,13 +58,14 @@ export default function PublicNavBar() {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectGroup>
+                                                    <SelectLabel>Județe</SelectLabel>
                                                     {counties.map((county) => (
                                                         <SelectItem value={county.name} key={county.id}>
                                                             {county.name}
                                                         </SelectItem>
                                                     ))}
                                                 </SelectGroup>
-                                                <SelectLabel>Județe</SelectLabel>
+
                                             </SelectContent>
                                         </Select>
 
