@@ -78,7 +78,7 @@ export default function PublicNavBar() {
                                             </Button>
 
                                             <Button size="sm" asChild>
-                                                <Link href="/auth/sign-in">Autentificăte</Link>
+                                                <Link href="/auth/sign-in">Autentifică-te</Link>
                                             </Button>
 
                                             <ButtonDonate link="#" className="mr-2"/>
@@ -126,7 +126,7 @@ export default function PublicNavBar() {
                         </Button>
 
                         <Button size="sm" asChild>
-                            <Link href="/auth/sign-in">Autentificăte</Link>
+                            <Link href="/auth/sign-in">Autentifică-te</Link>
                         </Button>
 
                         <FlipButton>

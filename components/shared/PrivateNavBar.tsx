@@ -19,12 +19,21 @@ import {ButtonDonate} from "@/components/shared/ButtonDonate";
 import {usePathname} from "next/navigation";
 import {
     DropdownMenu,
-    DropdownMenuContent, DropdownMenuItem,
-    DropdownMenuLabel, DropdownMenuSeparator,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {signOutAction} from "@/lib/supabase/actions/signOut";
 import {FlipButton, FlipButtonBack, FlipButtonFront} from "@/components/animate-ui/components/buttons/flip";
+import {
+    Dialog,
+    DialogContent, DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/animate-ui/components/radix/dialog';
 
 export default function PrivateNavBar() {
     const pathname = usePathname();
@@ -150,13 +159,13 @@ export default function PrivateNavBar() {
                                 <UserRoundIcon/>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>Profile</DropdownMenuItem>
+                                <DropdownMenuLabel>Contul meu</DropdownMenuLabel>
+                                <DropdownMenuSeparator/>
+                                <DropdownMenuItem>Profil</DropdownMenuItem>
                                 <DropdownMenuItem>Billing</DropdownMenuItem>
                                 <DropdownMenuItem>Team</DropdownMenuItem>
                                 <DropdownMenuItem>Subscription</DropdownMenuItem>
-                                <DropdownMenuSeparator />
+                                <DropdownMenuSeparator/>
                                 <DropdownMenuItem>
                                     <Button onClick={signOutAction} className={'m-0'}>
                                         Deconecteză-te
@@ -169,6 +178,89 @@ export default function PrivateNavBar() {
                             <FlipButtonFront variant={'accent'} size={'sm'}>Donează ❤</FlipButtonFront>
                             <FlipButtonBack variant={'destructive'} size={'sm'}>Donează ❤</FlipButtonBack>
                         </FlipButton>
+
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button>
+                                    Creează Eveniment
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>
+                                        <span className={'text-black'}>Ce tip de eveniment vrei sa creezi ?</span>
+                                    </DialogTitle>
+                                    <DialogDescription>
+                                        Fiecare eveniment in parte are un meniu diferit de configurare.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
+                                    {/* Card 1 */}
+                                    <Link href={'create/petition'}>
+                                        <div
+                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                            style={{backgroundImage: "url('/jpg/petitie.jpg')"}}
+                                        >
+                                            <div
+                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                  <span
+                                                      className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+                                                    Petiție
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+
+                                    {/* Card 2 */}
+                                    <Link href={'/create/protest'}>
+                                        <div
+                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                            style={{backgroundImage: "url('/jpg/protest.jpg')"}}
+                                        >
+                                            <div
+                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300  ease-in-out group-hover:bg-black/80">
+                                                  <span
+                                                      className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+                                                    Protest
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+
+                                    {/* Card 3 */}
+                                    <Link href={'/create/community-activity'}>
+                                        <div
+                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                            style={{backgroundImage: "url('/jpg/activitate-comunitara.jpg')"}}
+                                        >
+                                            <div
+                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                  <span
+                                                      className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+                                                    Activitate Comunitară
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+
+                                    {/* Card 4 */}
+                                    <Link href={'/create/charity-event'}>
+                                        <div
+                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                            style={{backgroundImage: "url('/jpg/eveniment-caritabil.jpg')"}}
+                                        >
+                                            <div
+                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                  <span
+                                                      className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+                                                    Eveniment <br/> caritabil
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </div>
