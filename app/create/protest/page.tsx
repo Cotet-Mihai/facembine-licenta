@@ -1,14 +1,21 @@
-import {H1, H2, H3} from "@/components/shared/Typography";
+'use client'
 
+import {H1} from "@/components/shared/Typography";
+import React from "react";
+import {Info, MapPin, Camera, ListTodo} from 'lucide-react';
+import StepperProtest from "@/app/create/protest/components/StepperProtest";
 
 export default function Protest() {
+
+
+
     return(
         <div className={'h-screen'}>
-            <div className={'mt-20 h-20 mx-50 rounded-3xl flex justify-start items-center border border-gray-200 shadow'}>
-                <H3 className={'ml-5'}>Creează Protest</H3>
+            <div className={'mt-20 h-20 mx-50 rounded-3xl flex justify-start items-center'}>
+                <H1 className={'ml-5'}>Creează Protest</H1>
             </div>
-            <div className={'mt-20 h-20 mx-50 rounded-3xl flex justify-start items-center border border-gray-200 shadow'}>
-                <H3 className={'ml-5'}>Creează Protest</H3>
+            <div className={' mx-50 p-10 border border-gray-200 shadow rounded-3xl'}>
+                <StepperProtest/>
             </div>
 
         </div>
