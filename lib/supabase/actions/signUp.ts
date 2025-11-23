@@ -7,6 +7,7 @@ export async function signupAction(formData: FormData) {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirmPassword') as string;
+    const username = formData.get('name') as string;
 
     if (password.length < 8) {
         return { error: "Parola trebuie să aibă cel puțin 8 caractere." };
@@ -22,7 +23,10 @@ export async function signupAction(formData: FormData) {
         email: email,
         password: password,
         options: {
-            emailRedirectTo: 'http://localhost:3000/dashboard'
+            emailRedirectTo: 'http://localhost:3000/dashboard',
+            data: {
+                display_name: username
+            }
         }
     })
 

@@ -5,15 +5,29 @@ import {Button} from "@/components/ui/button"
 import {Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator,} from "@/components/ui/field"
 import {Input} from "@/components/ui/input"
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 import {toast} from "sonner";
 import {signInWithEmailAction} from "@/lib/supabase/actions/signIn";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/animate-ui/components/radix/dialog';
+import {Label} from "@/components/ui/label";
+import {resetPasswordAction} from "@/lib/supabase/actions/resetPassword";
 
 export function SigninForm({
                                className,
                                ...props
                            }: React.ComponentProps<"form">) {
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+
+    const [email, setEmail] = useState("");
+
+    async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
@@ -21,13 +35,26 @@ export function SigninForm({
 
         if (result?.error) {
             toast.error(result.error)
+        }
+    }
+
+    async function handleForgetPassword(e: React.MouseEvent<HTMLSpanElement>) {
+        if (!email) {
+            return toast.error("Te rog introdu email-ul.");
+        }
+
+        const result = await resetPasswordAction(email);
+
+        if (result?.error) {
+            console.error(result.error);
+            toast.error("A apărut o eroare.");
         } else {
-            toast.success("Verifică emailul pentru confirmare!");
+            toast.success("Email trimis!");
         }
     }
 
     return (
-        <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleSubmit}>
+        <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleSignIn}>
             <FieldGroup>
                 <div className="flex flex-col items-center gap-1 text-center">
                     <h1 className="text-2xl font-bold">Autentifică-te</h1>
@@ -41,13 +68,38 @@ export function SigninForm({
                 </Field>
                 <Field>
                     <div className="flex items-center">
-                        <FieldLabel htmlFor="password">Parolă</FieldLabel>
-                        <a
-                            href="#"
-                            className="ml-auto text-sm underline-offset-4 hover:underline"
-                        >
-                            Ați uitat parola?
-                        </a>
+                        <FieldLabel htmlFor="password" className={'mr-auto'}>Parolă</FieldLabel>
+                        <Dialog>
+                            <DialogTrigger>
+                                <span className="text-sm underline-offset-4 hover:underline cursor-pointer">
+                                  Ați uitat parola?
+                                </span>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-md p-6">
+                                <DialogHeader>
+                                    <DialogTitle>Resetează Parola</DialogTitle>
+                                    <DialogDescription>
+                                        Introdu adresa de email asociată contului tău, iar noi îți vom trimite un link
+                                        pentru resetarea parolei.
+                                    </DialogDescription>
+                                </DialogHeader>
+
+                                <div className="grid gap-3">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input name="email" placeholder="m@exemple.com" onChange={(e) => setEmail(e.target.value)}/>
+                                </div>
+
+                                <DialogFooter className="mt-4 flex justify-end gap-2">
+                                    <Button
+                                        type="submit"
+                                        className="py-2"
+                                        onClick={handleForgetPassword}
+                                    >
+                                        Trimite link resetare
+                                    </Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                     <Input name="password" type="password" required/>
                 </Field>

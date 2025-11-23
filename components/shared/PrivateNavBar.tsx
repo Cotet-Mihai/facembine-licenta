@@ -28,7 +28,8 @@ import {FlipButton, FlipButtonBack, FlipButtonFront} from "@/components/animate-
 
 export default function PrivateNavBar() {
     const pathname = usePathname();
-    const showNavbar = !pathname.startsWith("/auth");
+    const hidePaths = ["/auth", "/account/update-password"];
+    const showNavbar = !hidePaths.some(path => pathname.startsWith(path));
 
     if (!showNavbar) return null;
 
