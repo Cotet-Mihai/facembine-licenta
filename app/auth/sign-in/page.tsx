@@ -19,7 +19,7 @@ export default function LoginPage() {
       </div>
         <div className="bg-muted relative hidden lg:block">
             <Image
-                src="/sign-in-page.png"
+                src="/png/sign-in-page.png"
                 alt="Image"
                 fill
                 style={{ objectFit: "cover", objectPosition: "center 30%" }}
