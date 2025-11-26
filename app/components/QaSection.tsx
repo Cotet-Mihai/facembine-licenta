@@ -1,6 +1,6 @@
 import {cn} from "@/lib/utils";
 import {bebas_neue} from "@/lib/fonts";
-import SpotlightCard from "@/app/components/SpotlightCard";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export default function QaSection() {
     return (

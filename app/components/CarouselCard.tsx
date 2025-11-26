@@ -1,15 +1,11 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react';
-import { motion, PanInfo, useMotionValue, useTransform } from 'motion/react';
-import React, { JSX } from 'react';
-
-// replace icons with your own if needed
-import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from 'react-icons/fi';
-import Image from "next/image";
+import React, {JSX, useEffect, useRef, useState} from 'react';
+import {motion, PanInfo, useMotionValue, useTransform} from 'motion/react';
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {ButtonDonate} from "@/components/shared/ButtonDonate";
+
 export interface CarouselItem {
   title: string;
   description: string;
@@ -19,7 +15,7 @@ export interface CarouselItem {
 }
 
 export interface CarouselProps {
-  items?: CarouselItem[];
+  items: CarouselItem[];
   baseWidth?: number;
   autoplay?: boolean;
   autoplayDelay?: number;
@@ -28,58 +24,13 @@ export interface CarouselProps {
   round?: boolean;
 }
 
-const DEFAULT_ITEMS: CarouselItem[] = [
-    {
-        title: 'Asociația Ramses',
-        description: 'Inspirată din povestea motanului Ramses, misiunea Asociației Ramses constă în strângerea' +
-            ' de fonduri pentru adăposturile și asociațiile din întreaga țară.',
-        id: 1,
-        icon: <Image src={'/ong/asociatia-ramses.png'} alt={'Asociația Ramses'} width={500} height={500}
-                     draggable={false} className={"text-white"}/>,
-        link: 'https://asociatiaramses.ro/'
-    },
-    {
-        title: 'Centrul Filia',
-        description: 'Centrul FILIA este o organizație feministă care face auzite vocile femeilor prin lucru' +
-            ' direct în comunități și activități de advocacy, activism și sensibilizare, studii și analize.',
-        id: 2,
-        icon: <Image src={'/ong/centrul-filia.png'} alt={'Centrul Filia'} width={400} height={400}
-                     draggable={false} className={"text-white"}/>,
-        link: 'https://centrulfilia.ro/'
-    }, {
-        title: 'O Mână De Ajutor',
-        description: 'Asociația Eco-Durabil este o organizație non-profit, apolitică și independentă ' +
-            'din București, fondată în 2007 la inițiativa unor tineri din diferite domenii.',
-        id: 3,
-        icon: <Image src={'/ong/o-mana-de-ajutor.png'} alt={'O mână de ajutor'} width={400} height={400}
-                     draggable={false} className={"text-white"}/>,
-        link: 'https://omanadeajutor.eu/'
-    }, {
-        title: 'Agenția Împreună',
-        description: 'Misiunea Agenției este să păstreze și să promoveze identitatea romilor prin cercetare,' +
-            ' documentare și implementarea politicilor sociale dedicate lor.',
-        id: 4,
-        icon: <Image src={'/ong/agentia-impreuna.png'} alt={'Agenția împreună'} width={350} height={350}
-                     draggable={false} className={"text-white mx-4"}/>,
-        link: 'https://www.agentiaimpreuna.ro/'
-    }, {
-        title: 'Vocea copiilor abandonați',
-        description: 'Scopul nostru este să susținem copiii și tinerii abandonați, oferindu-le sprijin' +
-            ' educativ și un mediu în care să fie ascultați, înțeleși și iubiți. ',
-        id: 5,
-        icon: <Image src={'/ong/vocea-copiilor-abandonati.png'} alt={'Vocea copiilor abandonati'} width={400} height={400}
-                     draggable={false} className={"text-white"}/>,
-        link: 'https://voceacopiilor.ro/'
-    },
-];
-
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
 const SPRING_OPTIONS = { type: 'spring', stiffness: 300, damping: 30 };
 
 export default function CarouselCard({
-  items = DEFAULT_ITEMS,
+  items,
   baseWidth = 300,
   autoplay = false,
   autoplayDelay = 3000,

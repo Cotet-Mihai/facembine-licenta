@@ -194,70 +194,79 @@ export default function PrivateNavBar() {
                                         Fiecare eveniment in parte are un meniu diferit de configurare.
                                     </DialogDescription>
                                 </DialogHeader>
+
                                 <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
                                     {/* Card 1 */}
-                                    <Link href={'create/petition'}>
-                                        <div
-                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
-                                            style={{backgroundImage: "url('/jpg/petitie.jpg')"}}
-                                        >
+                                    <DialogTrigger asChild>
+                                        <Link href={'create/petition'}>
                                             <div
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                                style={{backgroundImage: "url('/jpg/petitie.jpg')"}}
+                                            >
+                                                <div
+                                                    className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
                                                   <span
                                                       className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
                                                     Petiție
                                                   </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </DialogTrigger>
 
                                     {/* Card 2 */}
-                                    <Link href={'/create/protest'}>
-                                        <div
-                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
-                                            style={{backgroundImage: "url('/jpg/protest.jpg')"}}
-                                        >
+                                    <DialogTrigger asChild>
+                                        <Link href={'/create/protest'}>
                                             <div
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300  ease-in-out group-hover:bg-black/80">
+                                                className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                                style={{backgroundImage: "url('/jpg/protest.jpg')"}}
+                                            >
+                                                <div
+                                                    className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300  ease-in-out group-hover:bg-black/80">
                                                   <span
                                                       className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
                                                     Protest
                                                   </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </DialogTrigger>
 
                                     {/* Card 3 */}
-                                    <Link href={'/create/community-activity'}>
-                                        <div
-                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
-                                            style={{backgroundImage: "url('/jpg/activitate-comunitara.jpg')"}}
-                                        >
+                                    <DialogTrigger asChild>
+                                        <Link href={'/create/community-activity'}>
                                             <div
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                                style={{backgroundImage: "url('/jpg/activitate-comunitara.jpg')"}}
+                                            >
+                                                <div
+                                                    className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
                                                   <span
                                                       className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
                                                     Activitate Comunitară
                                                   </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </DialogTrigger>
 
                                     {/* Card 4 */}
-                                    <Link href={'/create/charity-event'}>
-                                        <div
-                                            className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
-                                            style={{backgroundImage: "url('/jpg/eveniment-caritabil.jpg')"}}
-                                        >
+                                    <DialogTrigger asChild>
+                                        <Link href={'/create/charity-event'}>
                                             <div
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
+                                                className="relative w-full aspect-square bg-cover bg-center rounded-xl shadow-lg cursor-pointer group"
+                                                style={{backgroundImage: "url('/jpg/eveniment-caritabil.jpg')"}}
+                                            >
+                                                <div
+                                                    className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl transition-all duration-300 ease-in-out group-hover:bg-black/80">
                                                   <span
                                                       className="text-white font-bold text-lg text-center px-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
                                                     Eveniment <br/> caritabil
                                                   </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </DialogTrigger>
                                 </div>
                             </DialogContent>
                         </Dialog>

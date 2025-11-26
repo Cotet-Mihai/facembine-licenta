@@ -1,6 +1,6 @@
 import {bebas_neue} from "@/lib/fonts";
 import {cn} from "@/lib/utils";
-import CarouselCard from "@/app/components/CarouselCard";
+import CarouselCardContainer from "@/app/containers/CarouselCardContainer";
 
 
 export default function BannerTrusted() {
@@ -24,14 +24,7 @@ export default function BannerTrusted() {
             </h4>
 
             <div className={'hidden md:block '}>
-                <CarouselCard
-                    baseWidth={600}
-                    autoplay={true}
-                    autoplayDelay={5000}
-                    pauseOnHover={true}
-                    loop={true}
-                    round={false}
-                />
+                <CarouselCardContainer width={600}/>
             </div>
 
             {/*Mobile*/}
@@ -39,47 +32,8 @@ export default function BannerTrusted() {
                 'block mb-3',
                 'sm:hidden'
             )}>
-                <CarouselCard
-                    baseWidth={350}
-                    autoplay={true}
-                    autoplayDelay={5000}
-                    pauseOnHover={true}
-                    loop={true}
-                    round={false}
-                />
+                <CarouselCardContainer width={350}/>
             </div>
         </div>
     )
 }
-
-
-// <div className={'flex flex-col md:flex-row justify-center items-center bg-green-500 md:gap-0 md:shadow-2xl shadow-green-950'}>
-//     <h4 className={`${bebas_neue.className} text-5xl font-semibold uppercase text-green-900 m-5 md:m-10`}>
-//                     <span className={'text-7xl text-yellow-50'}>
-//                         Asociații
-//                     </span> în care <br/> avem
-//         <span className={'text-7xl md:text-8xl text-yellow-300'}>
-//                         încredere!
-//                     </span>
-//     </h4>
-//     <div className={'md:hidden block mb-4'}>
-//         <CarouselCard
-//             baseWidth={350}
-//             autoplay={true}
-//             autoplayDelay={5000}
-//             pauseOnHover={true}
-//             loop={true}
-//             round={false}
-//         />
-//     </div>
-//     <div className={'hidden md:block '}>
-//         <CarouselCard
-//             baseWidth={500}
-//             autoplay={true}
-//             autoplayDelay={5000}
-//             pauseOnHover={true}
-//             loop={true}
-//             round={false}
-//         />
-//     </div>
-// </div>
