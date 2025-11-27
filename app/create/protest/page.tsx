@@ -1,19 +1,26 @@
-'use client'
-
-import {H1} from "@/components/shared/Typography";
 import React from "react";
-import StepperController from "@/app/create/protest/components/StepperController";
+import Image from "next/image";
+import StepperContainer from "@/app/create/protest/containers/StepperContainer";
+
 export default function Protest() {
 
-    return(
-        <div className={'h-screen'}>
-            <div className={'mt-20 h-20 mx-50 rounded-3xl flex justify-start items-center'}>
-                <H1 className={'ml-5'}>Creează Protest</H1>
+    return (
+        <div className="grid min-h-svh lg:grid-cols-[30%_70%]">
+
+            <div className="relative flex-col gap-4 p-6 md:p-10 order-2 lg:order-1 lg:block hidden">
+                <Image
+                    src="/jpg/protest.jpg"
+                    alt="Crează protest"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    sizes="100vw"
+                />
             </div>
-            <div className={' mx-50 p-10 border border-gray-200 shadow rounded-3xl'}>
-                <StepperController/>
+
+            <div className="relative order-1 lg:order-2 px-15 pt-30">
+                <StepperContainer/>
             </div>
 
         </div>
-    )
+    );
 }

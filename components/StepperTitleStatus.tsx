@@ -1,3 +1,6 @@
+import React, {Dispatch, SetStateAction} from 'react';
+import {Badge} from '@/components/ui/badge';
+import {Button} from '@/components/ui/button';
 import {
     Stepper,
     StepperContent,
@@ -9,11 +12,9 @@ import {
     StepperTitle,
     StepperTrigger,
 } from '@/components/ui/stepper';
-import {Button} from "@/components/ui/button";
 import {Check, LoaderCircleIcon} from 'lucide-react';
-import {Badge} from "@/components/ui/badge";
-import React, {useState} from "react";
 import {IconType} from "react-icons";
+import {toast} from "sonner";
 
 type Step = {
     title: string;
@@ -21,18 +22,21 @@ type Step = {
 }
 
 type Props = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     steps: Step[];
+    stepsState: {
+        currentStep: number;
+        setCurrentStep: (currentStep: number) => void;
+    },
+    onValidateNext: () => boolean | undefined
 }
 
-export default function StepperView({children, steps}: Props) {
-
-    const [currentStep, setCurrentStep] = useState(1);
+export default function StepperTitleStatus({children, steps, stepsState, onValidateNext}: Props) {
 
     return (
         <Stepper
-            value={currentStep}
-            onValueChange={setCurrentStep}
+            value={stepsState.currentStep}
+            onValueChange={stepsState.setCurrentStep}
             indicators={{
                 completed: <Check className="size-4"/>,
                 loading: <LoaderCircleIcon className="size-4 animate-spin"/>,
@@ -45,19 +49,21 @@ export default function StepperView({children, steps}: Props) {
                         <StepperItem key={index} step={index + 1} className="relative flex-1 items-start">
                             <StepperTrigger className="flex flex-col items-start justify-center gap-2.5 grow" asChild>
                                 <StepperIndicator
-                                    className="size-8 border-2 data-[state=active]:bg-blue-500 data-[state=completed]:text-white data-[state=completed]:bg-green-500 data-[state=inactive]:bg-transparent data-[state=inactive]:border-border data-[state=inactive]:text-muted-foreground">
+                                    className="size-8 border-2 data-[state=completed]:text-white data-[state=completed]:bg-green-500 data-[state=inactive]:bg-transparent data-[state=inactive]:border-border data-[state=inactive]:text-muted-foreground data-[state=active]:bg-blue-500">
                                     <step.icon className="size-4"/>
                                 </StepperIndicator>
                                 <div className="flex flex-col items-start gap-1">
                                     <div
-                                        className="text-[10px] font-semibold uppercase text-muted-foreground">Pasul {index + 1}</div>
+                                        className="text-[10px] font-semibold uppercase text-muted-foreground">Step {index + 1}</div>
                                     <StepperTitle
                                         className="text-start text-base font-semibold group-data-[state=inactive]/step:text-muted-foreground">
                                         {step.title}
                                     </StepperTitle>
                                     <div>
                                         <Badge
-                                            variant="inProgress"
+                                            variant="primary"
+                                            size="sm"
+                                            appearance="light"
                                             className="hidden group-data-[state=active]/step:inline-flex"
                                         >
                                             In Progress
@@ -65,6 +71,8 @@ export default function StepperView({children, steps}: Props) {
 
                                         <Badge
                                             variant="success"
+                                            size="sm"
+                                            appearance="light"
                                             className="hidden group-data-[state=completed]/step:inline-flex"
                                         >
                                             Completed
@@ -72,6 +80,7 @@ export default function StepperView({children, steps}: Props) {
 
                                         <Badge
                                             variant="secondary"
+                                            size="sm"
                                             className="hidden group-data-[state=inactive]/step:inline-flex text-muted-foreground"
                                         >
                                             Pending
@@ -92,7 +101,7 @@ export default function StepperView({children, steps}: Props) {
             <StepperPanel className="text-sm">
                 {steps.map((step, index) => (
                     <StepperContent key={index} value={index + 1} className="flex items-start justify-center flex-col">
-                        {step.title}
+                        <h3 className={'font-semibold mb-8 text-2xl'}>{step.title}</h3>
                         <div className={'w-full'}>
                             {children}
                         </div>
@@ -101,18 +110,24 @@ export default function StepperView({children, steps}: Props) {
             </StepperPanel>
 
             <div className="flex items-center justify-between gap-2.5">
-                <Button variant="outline" onClick={() => setCurrentStep((prev) => prev - 1)}
-                        disabled={currentStep === 1}>
+                <Button variant="outline" onClick={() => stepsState.setCurrentStep(stepsState.currentStep - 1)}
+                        disabled={stepsState.currentStep === 1}>
                     Previous
                 </Button>
                 <Button
                     variant="outline"
-                    onClick={() => setCurrentStep((prev) => prev + 1)}
-                    disabled={currentStep === steps.length}
+                    onClick={() => {
+                        if (!onValidateNext()) {
+                            toast.error("Toate campurile trebuiesc completate");
+                            return;
+                        }
+                        stepsState.setCurrentStep(stepsState.currentStep + 1);
+                    }}
+                    disabled={stepsState.currentStep === steps.length}
                 >
                     Next
                 </Button>
             </div>
         </Stepper>
-    )
+    );
 }

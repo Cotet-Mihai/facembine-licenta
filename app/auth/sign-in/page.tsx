@@ -26,7 +26,6 @@ export default function LoginPage() {
                 sizes="100vw"
             />
         </div>
-
     </div>
   )
 }
