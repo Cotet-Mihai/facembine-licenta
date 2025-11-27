@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React from 'react';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
 import {
@@ -54,7 +54,7 @@ export default function StepperTitleStatus({children, steps, stepsState, onValid
                                 </StepperIndicator>
                                 <div className="flex flex-col items-start gap-1">
                                     <div
-                                        className="text-[10px] font-semibold uppercase text-muted-foreground">Step {index + 1}</div>
+                                        className="text-[10px] font-semibold uppercase text-muted-foreground">Pasul {index + 1}</div>
                                     <StepperTitle
                                         className="text-start text-base font-semibold group-data-[state=inactive]/step:text-muted-foreground">
                                         {step.title}
@@ -66,7 +66,7 @@ export default function StepperTitleStatus({children, steps, stepsState, onValid
                                             appearance="light"
                                             className="hidden group-data-[state=active]/step:inline-flex"
                                         >
-                                            In Progress
+                                            În curs
                                         </Badge>
 
                                         <Badge
@@ -75,7 +75,7 @@ export default function StepperTitleStatus({children, steps, stepsState, onValid
                                             appearance="light"
                                             className="hidden group-data-[state=completed]/step:inline-flex"
                                         >
-                                            Completed
+                                            Finalizat
                                         </Badge>
 
                                         <Badge
@@ -83,7 +83,7 @@ export default function StepperTitleStatus({children, steps, stepsState, onValid
                                             size="sm"
                                             className="hidden group-data-[state=inactive]/step:inline-flex text-muted-foreground"
                                         >
-                                            Pending
+                                            În așteptare
                                         </Badge>
                                     </div>
                                 </div>
@@ -112,20 +112,20 @@ export default function StepperTitleStatus({children, steps, stepsState, onValid
             <div className="flex items-center justify-between gap-2.5">
                 <Button variant="outline" onClick={() => stepsState.setCurrentStep(stepsState.currentStep - 1)}
                         disabled={stepsState.currentStep === 1}>
-                    Previous
+                    Anterior
                 </Button>
                 <Button
                     variant="outline"
                     onClick={() => {
                         if (!onValidateNext()) {
-                            toast.error("Toate campurile trebuiesc completate");
+                            toast.error("Toate câmpurile trebuie completate.");
                             return;
                         }
                         stepsState.setCurrentStep(stepsState.currentStep + 1);
                     }}
                     disabled={stepsState.currentStep === steps.length}
                 >
-                    Next
+                    Următorul
                 </Button>
             </div>
         </Stepper>
